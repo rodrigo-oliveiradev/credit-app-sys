@@ -1,3 +1,12 @@
 spring:
-  application:
-    name: credit-app-sys
+  datasource:
+    url: jdbc:h2:mem:credit_app_system_db
+    username: oliver
+    password: 1234
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
