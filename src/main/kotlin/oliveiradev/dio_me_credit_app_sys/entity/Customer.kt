@@ -3,7 +3,7 @@ package oliveiradev.dio_me_credit_app_sys.entity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "Customers")
+//@Table(name = "Customers")
 data class Customer(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
