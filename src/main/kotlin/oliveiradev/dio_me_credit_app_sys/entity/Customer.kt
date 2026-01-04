@@ -1,6 +1,7 @@
 package oliveiradev.dio_me_credit_app_sys.entity
 
 import jakarta.persistence.*
+import java.math.BigDecimal
 
 @Entity
 //@Table(name = "Customers")
@@ -22,15 +23,19 @@ data class Customer(
     var email: String = "",
 
     @Column(nullable = false)
+    var income: BigDecimal = BigDecimal.ZERO,
+
+    @Column(nullable = false)
     var password: String = "",
 
     @Column(nullable = false)
-    var address: String = "",
+    @Embedded var address: Address = Address(),
 
+    @Column(nullable = false)
     @OneToMany(
-        mappedBy = "customer",
         cascade = [CascadeType.REMOVE, CascadeType.PERSIST],
-        fetch = FetchType.LAZY
+        fetch = FetchType.LAZY,
+        mappedBy = "customer",
     )
     var credits: List<Credit> = mutableListOf()
 )
