@@ -27,10 +27,10 @@ class CustomerResource(
     fun saveCustomer(@RequestBody customerDto: CustomeDto): ResponseEntity<String> {
         val saveCustomer = this.customerService.save(customerDto.toEntity())
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Customer ${saveCustomer.email}, saved!")
+        return ResponseEntity.status(HttpStatus.CREATED).body("Customer ${saveCustomer.firstName} ${saveCustomer.lastName}, saved!")
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<CustomerView> {
         val customer : Customer = this.customerService.finById(id)
 
