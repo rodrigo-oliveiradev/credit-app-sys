@@ -8,7 +8,7 @@ import oliveiradev.dio_me_credit_app_sys.entity.Customer
 import org.hibernate.validator.constraints.br.CPF
 import java.math.BigDecimal
 
-data class CustomeDto(
+data class CustomerDto(
     @field:NotEmpty(message = "This field cannot be blank") val firstName: String,
     @field:NotEmpty(message = "This field cannot be blank") val lastName: String,
     @field:NotEmpty(message = "Invalid input") @CPF(message = "CPF Invalid") val cpf: String,

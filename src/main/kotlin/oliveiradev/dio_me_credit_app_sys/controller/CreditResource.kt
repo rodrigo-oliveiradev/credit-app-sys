@@ -23,6 +23,11 @@ import java.util.stream.Collectors
 class CreditResource (
     private  val creditService: CreditService
 ){
+    /**
+     * Salva um novo crédito para um cliente
+     * @param creditDto Dados do crédito a ser criado
+     * @return ResponseEntity com mensagem de confirmação e status CREATED
+     */
     @PostMapping
     fun saveCredit(@RequestBody @Valid creditDto: CreditDto): ResponseEntity<String> {
         val credit: Credit = this.creditService.save(creditDto.toEntity())
@@ -31,6 +36,11 @@ class CreditResource (
             .body("Credit ${credit.creditCode} - Customer ${credit.customer?.firstName} ${credit.customer?.lastName}, saved!")
     }
 
+    /**
+     * Busca todos os créditos de um cliente específico
+     * @param customerId ID do cliente para filtrar os créditos
+     * @return Lista de créditos do cliente no formato CreditViewList
+     */
     @GetMapping
     fun findAllCustomerId(@RequestParam(value = "customerId") customerId: Long) : ResponseEntity<List<CreditViewList>> {
         val creditViewList: List<CreditViewList> = this.creditService.finAllByCustomer(customerId).stream()
@@ -39,9 +49,15 @@ class CreditResource (
         return ResponseEntity.status(HttpStatus.OK).body(creditViewList)
     }
 
+    /**
+     * Busca um crédito específico pelo código do crédito, validando se pertence ao cliente
+     * @param customerId ID do cliente para validação de propriedade
+     * @param creditCode Código único do crédito a ser buscado
+     * @return Detalhes completos do crédito no formato CreditView
+     */
     @GetMapping("/{creditCode}")
     fun findByCreditCode (@RequestParam(value = "customerId") customerId: Long,
-                                @PathVariable creditCode: UUID) : ResponseEntity<CreditView> {
+                          @PathVariable creditCode: UUID) : ResponseEntity<CreditView> {
         val credit: Credit = this.creditService.findByCreditCode(customerId, creditCode)
 
         return ResponseEntity.status(HttpStatus.OK).body(CreditView(credit))

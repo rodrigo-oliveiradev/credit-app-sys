@@ -1,10 +1,8 @@
 *.class
 
-
 /node_modules
 
 # SSH Keys
-
 *.pem
 *.ppk
 
@@ -21,6 +19,9 @@
 
 #Gradle temporary files
 target/
+.gradle/
+build/
+out/
 
 #Eclipse files
 **/.project
@@ -34,7 +35,6 @@ blog/bin/
 #IntelliJ files
 **/*.iml
 **/.idea
-**/.gradle
 
 # Kotlin
 .kotlin
@@ -45,3 +45,6 @@ blog/bin/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 /.metadata/
+
+# Gradle wrapper (deve ser mantido)
+!gradle/wrapper/gradle-wrapper.jar

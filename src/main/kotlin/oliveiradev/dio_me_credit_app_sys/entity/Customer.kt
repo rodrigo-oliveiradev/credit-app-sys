@@ -3,6 +3,19 @@ package oliveiradev.dio_me_credit_app_sys.entity
 import jakarta.persistence.*
 import java.math.BigDecimal
 
+/**
+ * Entidade que representa um cliente no sistema
+ * Mapeada para a tabela "customers" no banco de dados
+ * @property id Identificador único gerado automaticamente
+ * @property firstName Primeiro nome do cliente
+ * @property lastName Sobrenome do cliente
+ * @property cpf CPF único do cliente
+ * @property email Email único do cliente
+ * @property income Renda do cliente
+ * @property password Senha do cliente (deve ser hasheada na prática)
+ * @property address Endereço do cliente (objeto embutido)
+ * @property credits Lista de créditos associados a este cliente (relação One-to-Many)
+ */
 @Entity
 @Table(name = "customers")
 data class Customer(
